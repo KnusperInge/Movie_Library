@@ -43,8 +43,8 @@ export class DetailviewComponent implements OnInit {
       this.movieID = await params['id'];
       this.movieService.getMovie(this.movieID).subscribe((data) => {
         this.selectedMovie = data;
-        console.log('Data:', this.selectedMovie);
-        console.log(this.movieID);
+        // console.log('Data:', this.selectedMovie);
+        // console.log(this.movieID);
       });
     });
 

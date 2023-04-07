@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
   constructor(
     private SideNavService: SideNavService,
     private router: Router,
+
     private authServ: AuthService,
     private bPS: BreakpointService
   ) {
