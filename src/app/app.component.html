@@ -1,0 +1,24 @@
+<app-header></app-header>
+<mat-sidenav-container>
+  <mat-sidenav [opened]="opened" position="end" class="sidenav" [ngClass]="{'isTablet':isTablet, 'isMobile':isMobile}"
+    disableClose="">
+    <nav>
+      <ul class="upperlist">
+        <li (click)="openHome()"><mat-icon fontIcon="home"></mat-icon>Home</li>
+        <li *ngIf="!authState" (click)="openLogin()"><mat-icon fontIcon="login"></mat-icon>Login</li>
+        <li *ngIf="authState" (click)="openAddnew()"><mat-icon fontIcon="add"></mat-icon>add new Movie</li>
+        <li style="color: lightgray;"><mat-icon fontIcon="receipt"></mat-icon>Wishlist (WIP)</li>
+        <li *ngIf="authState" (click)="logOut()"><mat-icon fontIcon="logout"></mat-icon>Logout</li>
+      </ul>
+      <ul class="downlist">
+        <li style="color: lightgray;">Impressum (WIP)</li>
+        <li style="color: lightgray;">Datenschutzerklärung (WIP)</li>
+      </ul>
+    </nav>
+
+
+  </mat-sidenav>
+  <mat-sidenav-content (scroll)="scrollHandler($event)">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

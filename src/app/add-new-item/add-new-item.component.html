@@ -1,0 +1,106 @@
+<main class="main" [ngClass]="{'isTablet':isTablet, 'isMobile':isMobile}">
+  <div class="leftSection">
+    <div class="searchContainer">
+      <form class="searchfield" [formGroup]="searchNewMovie" (submit)="onSearch()">
+        <mat-form-field>
+          <mat-label>Kategorie</mat-label>
+          <mat-select formControlName="category" #category>
+            <mat-option *ngFor="let item of Categories;" value="{{item.search}}">{{item.category}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Titel</mat-label>
+          <input type="text" matInput formControlName="title">
+        </mat-form-field>
+        <button type="submit">Suchen</button>
+      </form>
+
+
+      <form [formGroup]="addNewForm" (submit)="onSubmit()" *ngIf="!responseCheck">
+        <mat-form-field>
+          <mat-label>Kaufdatum</mat-label>
+          <input type="date" matInput formControlName="buyDate">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Format</mat-label>
+          <mat-select formControlName="format">
+            <mat-option *ngFor="let item of Formats;" value="{{item}}">{{item}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Bemerkungen</mat-label>
+          <textarea matInput formControlName="remarks"></textarea>
+        </mat-form-field>
+        <div class="btnbox">
+          <button type="submit" [disabled]="!addNewForm.valid">erstellen</button>
+          <button type="button" class="cancelBtn" (click)="resetForm()">abbrechen</button>
+        </div>
+      </form>
+
+    </div>
+    <div @show class="ResponseFieldWrapper" *ngIf="responseCheck">
+      <h3>Auswahl({{responseFromApi.length}}):</h3>
+      <div class="searchResponseField">
+        <div class="card" *ngFor="let object of responseFromApi" (click)="onCreatenewDbObject(object.id)">
+          <div class="row">
+            <h5>Titel:</h5><span>{{object.title}}{{object.name}}</span>
+          </div>
+          <div class="row">
+            <h5 class="subtitle">Originaltitel:</h5><span
+              class="subtitle">{{object.original_title}}{{object.original_name}}</span>
+          </div>
+          <div class="row">
+            <h5 class="subtitle">Erscheinungsdatum:</h5><span
+              class="subtitle">{{object.release_date}}{{object.first_air_date}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="rightSection">
+    <div @showRight class="preview" *ngFor="let preitem of newSelectedObject">
+      <h1>Vorschau</h1>
+      <div class="upperBlock">
+        <div class="block">
+          <h2>{{preitem.title}}</h2>
+          <div class="row">
+            <h3>Erscheinungsjahr:</h3>
+            <span>{{preitem.year}}</span>
+          </div>
+          <div *ngIf="preitem.category=='tv'" class="row">
+            <h3>Ende der Serie:</h3>
+            <span>{{preitem.lastEpisode}}</span>
+          </div>
+          <div class="row">
+            <h3>Genres:</h3>
+            <span *ngFor=" let genre of preitem.genre">{{genre.name}}</span>
+          </div>
+          <div *ngIf="preitem.category=='tv' " class="block">
+            <div class=" row">
+              <h3>Staffeln:</h3>
+              <span>{{preitem.seasons}}</span>
+            </div>
+            <div class="row">
+              <h3>Episoden:</h3>
+              <span>{{preitem.episodes}}</span>
+            </div>
+            <div class="row">
+              <h3>Serienstatus:</h3>
+              <span>{{preitem.status}}</span>
+            </div>
+          </div>
+        </div>
+        <img src="{{preitem.img}}">
+      </div>
+      <div class="block">
+        <h3>Beschreibung:</h3>
+        <span>{{preitem.description}}</span>
+      </div>
+    </div>
+
+  </div>
+  <div *ngIf="Note" class="note">
+    <h3>Successfully saved !!</h3>
+  </div>
+</main>

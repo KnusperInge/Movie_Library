@@ -1,0 +1,15 @@
+<header class="head" [ngClass]="{'isMobile':isMobile}">
+  <div class="head-title">
+    <img src="assets/img/icons/videokamera.png" alt="">
+    <h1>Movie Library</h1>
+  </div>
+  <div class="header-nav">
+    <div *ngIf="seachIconisVisible">
+      <mat-icon *ngIf="!searchOpened" fontIcon="search" (click)="toogleSearch()"></mat-icon>
+      <mat-icon *ngIf="searchOpened" (click)="toogleSearch()">close</mat-icon>
+    </div>
+
+    <mat-icon *ngIf="!navopened" (click)="toggleNav()" fontIcon="menu"></mat-icon>
+    <mat-icon *ngIf="navopened" (click)="toggleNav()">close</mat-icon>
+  </div>
+</header>

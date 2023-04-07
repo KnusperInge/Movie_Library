@@ -1,0 +1,60 @@
+<main class="main" [ngClass]="{'isMobile':isMobile}">
+
+  <div class="leftSide">
+    <div class=" headrow">
+      <h1>{{selectedMovie?.title}}</h1>
+      <span [class.movie]="selectedMovie?.category=='movie'"
+        [class.tv]="selectedMovie?.category=='tv'">{{selectedMovie?.category}}</span>
+    </div>
+
+    <div class="row">
+      <h3>Kaufdatum:</h3>
+      <span>{{selectedMovie?.buyDate}}</span>
+    </div>
+
+    <div class="row">
+      <h3>Format:</h3>
+      <span>{{selectedMovie?.format}}</span>
+    </div>
+    <div class="row">
+      <h3>Erscheinungsdatum:</h3>
+      <span>{{selectedMovie?.year}}</span>
+    </div>
+
+    <div class="tvblock" *ngIf="selectedMovie?.category=='tv'">
+      <div class="row">
+        <h3>Staffeln:</h3>
+        <span>{{selectedMovie?.seasons}}</span>
+      </div>
+      <div class="row">
+        <h3>Episoden:</h3>
+        <span>{{selectedMovie?.episodes}}</span>
+      </div>
+      <div class="row" *ngIf="selectedMovie?.status=='Ended'">
+        <h3>letzte Episode:</h3>
+        <span>{{selectedMovie?.lastEpisode}}</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3>Genre:</h3>
+      <span *ngFor="let genre of selectedMovie?.genre">{{genre.name}}</span>
+    </div>
+
+    <div class="descblock">
+      <h3>Bemerkungen:</h3>
+      <span>{{selectedMovie?.remarks}}</span>
+    </div>
+    <div class="descblock">
+      <h3>Beschreibung:</h3>
+      <span>{{selectedMovie?.description}}</span>
+    </div>
+  </div>
+
+  <div class="rightSide">
+    <img src="{{selectedMovie?.img}}" alt="">
+  </div>
+
+
+
+</main>

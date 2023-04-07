@@ -1,0 +1,17 @@
+<main>
+  <section class="section" [ngClass]="{'isMobile':isMobile}">
+    <h1>Login</h1>
+    <form [formGroup]="myForm" (ngSubmit)="onSignIn()">
+      <div class="formInputs">
+
+        <input class="input" type="email" id="email" formControlName="email" placeholder="email">
+        <input class="input" type="password" id="password" formControlName="password" placeholder="password">
+
+      </div>
+
+      <button [class.btndeactive]="!myForm.valid" [disabled]="!myForm.valid" type="submit">login</button>
+    </form>
+
+  </section>
+  <h2 [ngClass]="{'error':!Response.state}" *ngIf="showMessage">{{Response.message}}</h2>
+</main>

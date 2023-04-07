@@ -1,0 +1,15 @@
+<app-search *ngIf="opened" (searchtextChanged)="onSearchtextEntered($event)"
+  (searchFormatChanged)="onSearchFormatEntered($event)"
+  (searchGenreChanged)="onSearchGenreEntered($event)"></app-search>
+<div class="overview-wrapper" [ngClass]="{'isMobile':isMobile,'isSelected':isSelected}">
+  <div *ngFor="let item of collection$; let i = index">
+    <a (click)="openDetail(item.id)" class="card">
+      <img src="{{item.img}}">
+      <div class="center">
+        <h4>{{item.title}}</h4>
+        <span>{{item.format}}</span>
+      </div>
+    </a>
+  </div>
+
+</div>

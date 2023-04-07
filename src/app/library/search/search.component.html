@@ -1,0 +1,24 @@
+<main class="main" [ngClass]="{'isMobile':isMobile}">
+  <mat-form-field class="example-full-width">
+    <mat-label>Format</mat-label>
+    <mat-select matInput (selectionChange)="onsearchFormatchanged($event.value)">
+
+      <mat-option *ngFor="let item of formats" value="{{item.value}}">{{item.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Genre</mat-label>
+    <mat-select (selectionChange)="onsearchGenrechanged($event.value)">
+      <mat-option value="">All</mat-option>
+      <mat-option *ngFor="let item of allGenres" value="{{item.name}}">{{item.name}}</mat-option>
+
+    </mat-select>
+
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Search title</mat-label>
+    <input type="text" matInput [(ngModel)]="enteredSearchValue" (input)="onsearchtextchanged()">
+  </mat-form-field>
+
+</main>

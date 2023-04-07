@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "movie-library-53ca6": {
+      "hosting": {
+        "Movielibrary": [
+          "movie-library-53ca6"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "movie-library-53ca6"
+  }
+}
